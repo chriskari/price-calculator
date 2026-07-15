@@ -9,20 +9,18 @@ import config from '../../../config.json';
 
 export default function StorageStep() {
   const storageInfo = (
-    <>
-      <div>
-        By default, the first{' '}
-        <strong>
-          {config.Storage.Step * config.Storage.FreeStorageBlocks} GiB
-        </strong>{' '}
-        of standard storage is included at no additional cost, covering the
-        cluster's operational data. Storage beyond that amount is billed in
-        blocks of <strong>{config.Storage.Step} GiB</strong>. NFS storage is
-        billed at {config.NFSStorage.multiplier} times the standard storage
-        price. Snapshot storage is the space used by volume snapshots and is
-        billed at the standard price, without a free block.
-      </div>
-    </>
+    <div>
+      By default, the first{' '}
+      <strong>
+        {config.Storage.Step * config.Storage.FreeStorageBlocks} GiB
+      </strong>{' '}
+      of standard storage is included at no additional cost, covering the
+      cluster's operational data. Storage beyond that amount is billed in blocks
+      of <strong>{config.Storage.Step} GiB</strong>. NFS storage is billed at{' '}
+      {config.NFSStorage.multiplier} times the standard storage price. Snapshot
+      storage is the space used by volume snapshots and is billed at the
+      standard price, without a free block.
+    </div>
   );
 
   return (
