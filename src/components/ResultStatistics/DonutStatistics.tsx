@@ -1,4 +1,5 @@
 import { DonutChart } from '@ui5/webcomponents-react-charts';
+import formatCost from './formatCost';
 import './DonutStatistics.css';
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -30,12 +31,6 @@ const SEGMENTS = [
 ] as const;
 
 const RADIAN = Math.PI / 180;
-
-// ── Helpers ──────────────────────────────────────────────────────────────────
-
-function formatCUs(n: number): string {
-  return (Math.round(n * 100) / 100).toFixed(2);
-}
 
 // ── SegmentLabel ─────────────────────────────────────────────────────────────
 
@@ -76,7 +71,7 @@ function SegmentLabel(props: Partial<SegmentLabelProps>) {
         fontWeight="bold"
         fill={fill}
       >
-        {formatCUs(value)} CU
+        {formatCost(value)} CU
       </text>
       <text
         x={x}
@@ -86,7 +81,11 @@ function SegmentLabel(props: Partial<SegmentLabelProps>) {
         fill={fill}
         opacity={0.85}
       >
-        {(percent * 100).toFixed(1)}%
+        {(percent * 100).toLocaleString('de-DE', {
+          minimumFractionDigits: 1,
+          maximumFractionDigits: 1,
+        })}
+        %
       </text>
     </g>
   );
@@ -121,7 +120,7 @@ export default function DonutStatistics({
           // UI5 requires an element (not a ref) so it can cloneElement and inject props
           DataLabel: (<SegmentLabel />) as any,
         }}
-        centerLabel={total > 0 ? `${formatCUs(total)}` : '–'}
+        centerLabel={total > 0 ? formatCost(total) : '–'}
         chartConfig={{
           innerRadius: '35%',
           outerRadius: '75%',
