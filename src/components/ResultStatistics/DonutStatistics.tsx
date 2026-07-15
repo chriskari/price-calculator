@@ -24,9 +24,9 @@ interface SegmentLabelProps {
 // ── Constants ────────────────────────────────────────────────────────────────
 
 const SEGMENTS = [
-  { label: 'Worker Nodes',     color: '#000080' },
-  { label: 'Additional Config', color: '#1D428A' },
-  { label: 'Storage',          color: '#0437F2' },
+  { label: 'Worker Nodes', color: '#000080' },
+  { label: 'Storage', color: '#0437F2' },
+  { label: 'Additional Services', color: '#1D428A' },
 ] as const;
 
 const RADIAN = Math.PI / 180;
@@ -45,8 +45,9 @@ function formatCUs(n: number): string {
  * UI5 injects this via React.cloneElement, forwarding standard recharts
  * Pie label props (cx, cy, midAngle, outerRadius, name, value, percent, fill).
  */
-function SegmentLabel(props: SegmentLabelProps) {
-  const { cx, cy, midAngle, outerRadius, name, value, percent, fill } = props;
+function SegmentLabel(props: Partial<SegmentLabelProps>) {
+  const { cx, cy, midAngle, outerRadius, name, value, percent, fill } =
+    props as SegmentLabelProps;
 
   if (!value || percent < 0.005) return null;
 
@@ -57,13 +58,34 @@ function SegmentLabel(props: SegmentLabelProps) {
 
   return (
     <g>
-      <text x={x} y={y - 10} textAnchor={anchor} fontSize={13} fill={fill} opacity={0.85}>
+      <text
+        x={x}
+        y={y - 10}
+        textAnchor={anchor}
+        fontSize={13}
+        fill={fill}
+        opacity={0.85}
+      >
         {name}
       </text>
-      <text x={x} y={y + 7} textAnchor={anchor} fontSize={15} fontWeight="bold" fill={fill}>
+      <text
+        x={x}
+        y={y + 7}
+        textAnchor={anchor}
+        fontSize={15}
+        fontWeight="bold"
+        fill={fill}
+      >
         {formatCUs(value)} CU
       </text>
-      <text x={x} y={y + 25} textAnchor={anchor} fontSize={13} fill={fill} opacity={0.85}>
+      <text
+        x={x}
+        y={y + 25}
+        textAnchor={anchor}
+        fontSize={13}
+        fill={fill}
+        opacity={0.85}
+      >
         {(percent * 100).toFixed(1)}%
       </text>
     </g>
@@ -72,11 +94,20 @@ function SegmentLabel(props: SegmentLabelProps) {
 
 // ── Component ────────────────────────────────────────────────────────────────
 
-export default function DonutStatistics({ nodeConfigCosts, additionalCosts, storageCosts }: Props) {
-  const vals = [nodeConfigCosts, additionalCosts, storageCosts].map((v) => Math.max(0, v));
+export default function DonutStatistics({
+  nodeConfigCosts,
+  additionalCosts,
+  storageCosts,
+}: Props) {
+  const vals = [nodeConfigCosts, storageCosts, additionalCosts].map((v) =>
+    Math.max(0, v),
+  );
   const total = vals.reduce((a, b) => a + b, 0);
 
-  const dataset = SEGMENTS.map(({ label }, i) => ({ name: label, value: vals[i] }));
+  const dataset = SEGMENTS.map(({ label }, i) => ({
+    name: label,
+    value: vals[i],
+  }));
   const colors = SEGMENTS.map(({ color }) => color);
 
   return (
@@ -88,7 +119,7 @@ export default function DonutStatistics({ nodeConfigCosts, additionalCosts, stor
           accessor: 'value',
           colors,
           // UI5 requires an element (not a ref) so it can cloneElement and inject props
-          DataLabel: <SegmentLabel /> as any,
+          DataLabel: (<SegmentLabel />) as any,
         }}
         centerLabel={total > 0 ? `${formatCUs(total)}` : '–'}
         chartConfig={{

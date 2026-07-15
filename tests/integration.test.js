@@ -52,22 +52,22 @@ context('Go through calculator', () => {
       cy.get('ui5-button').contains('Next Step').click();
     });
 
-    cy.get(
-      'ui5-wizard-step[title-text="Additional Configuration"]:visible',
-    ).within(() => {
-      cy.get('[id=redis-select]').click();
-      cy.clickOnOption('Standard4'); //When value is outside UI5wizard step, click is not possible.
-      cy.costShouldBe(Step.ADDITIONAL_REDIS_INCREASE);
+    cy.get('ui5-wizard-step[title-text="Additional Services"]:visible').within(
+      () => {
+        cy.get('[id=redis-select]').click();
+        cy.clickOnOption('Standard4'); //When value is outside UI5wizard step, click is not possible.
+        cy.costShouldBe(Step.ADDITIONAL_REDIS_INCREASE);
 
-      cy.get('ui5-button').contains('CSV File').click();
-      cy.readFile('cypress/downloads/Kyma-Price-Calculations.csv').should(
-        'exist',
-      );
+        cy.get('ui5-button').contains('Export as CSV').click();
+        cy.readFile('cypress/downloads/Kyma-Price-Calculations.csv').should(
+          'exist',
+        );
 
-      cy.get('ui5-button').contains('XLSX File').click();
-      cy.readFile('cypress/downloads/Kyma-Price-Calculations.xlsx').should(
-        'exist',
-      );
-    });
+        cy.get('ui5-button').contains('Export as XLSX').click();
+        cy.readFile('cypress/downloads/Kyma-Price-Calculations.xlsx').should(
+          'exist',
+        );
+      },
+    );
   });
 });

@@ -16,7 +16,7 @@ export default function CostList(props: Props) {
   return (
     <>
       <div className="row" id={'nodes-cost'}>
-        <h5 className="text">Nodes</h5>
+        <h5 className="text">Worker Nodes</h5>
         <h5 className="value">{roundDecimals(nodeConfigCosts, true)} CU</h5>
       </div>
       <div className="row" id={'storage-cost'}>
@@ -24,7 +24,7 @@ export default function CostList(props: Props) {
         <h5 className="value">{roundDecimals(storageCosts, true)} CU</h5>
       </div>
       <div className="row" id={'additional-cost'}>
-        <h5 className="text">Additional Costs</h5>
+        <h5 className="text">Additional Services</h5>
         <h5 className="value">{roundDecimals(additionalCosts, true)} CU</h5>
       </div>
       <div className="row final-row">
@@ -39,7 +39,8 @@ export default function CostList(props: Props) {
       </div>
       <div className="row final-row final-row-child" id={'total-in-currency'}>
         <h5 className="text">- In currency ({config.CurrencyCode})</h5>
-        <h3 className="value">{roundDecimals(totalCosts.CC, true)} {config.CurrencyCode}
+        <h3 className="value">
+          {roundDecimals(totalCosts.CC, true)} {config.CurrencyCode}
         </h3>
       </div>
     </>

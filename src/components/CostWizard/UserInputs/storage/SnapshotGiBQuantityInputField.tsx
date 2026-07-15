@@ -25,7 +25,7 @@ export default function SnapshotGiBQuantityInputField() {
   return (
     <div>
       <Title className="wizard-subheader" level="H5" size="H5">
-        Cluster's Snapshot used Storage: number of GiB
+        Snapshot Storage: number of GiB
       </Title>
       <SpinnerInput
         id="snapshot-gib-quantity-input"

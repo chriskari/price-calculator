@@ -54,7 +54,7 @@ export default function XlsxDownloadButton() {
         })
       }
     >
-      XLSX File
+      Export as XLSX
       <Icon id="download-icon" design="Contrast" name="download" />
     </Button>
   );

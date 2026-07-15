@@ -15,7 +15,7 @@ export default function WorkerNodesStep() {
           className="help-portal-link"
           design="Information"
           mode="Interactive"
-          name="sys-help"
+          name="inspect"
           onClick={() => openLinks('worker-node-pools')}
         />
       </FlexBox>

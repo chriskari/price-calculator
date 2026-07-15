@@ -35,7 +35,7 @@ export default function RedisSelect() {
           className="help-portal-link"
           design="Information"
           mode="Interactive"
-          name="sys-help"
+          name="inspect"
           onClick={() => openLinks('redis')}
         />
       </FlexBox>
