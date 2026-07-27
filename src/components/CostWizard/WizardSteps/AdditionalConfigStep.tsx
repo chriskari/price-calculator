@@ -11,23 +11,22 @@ export default function AdditionalConfigStep() {
   const conversionRateInfo = (
     <>
       <div>
-        With the '<strong>conversion rate</strong>' you can change the amount of{' '}
-        <strong>{config.CurrencyCode}</strong> you are paying for{' '}
-        <strong>1 Capacity Unit</strong>. This will help you to calculate
-        eventual discounts.
+        With the <strong>conversion rate</strong>, you can change the amount of{' '}
+        <strong>{config.CurrencyCode}</strong> you pay for{' '}
+        <strong>1 Capacity Unit</strong>. This helps you calculate possible
+        discounts.
       </div>
       <div>
         If you are unsure about how to change the default value (
-        {config.ConversionRateCUCC.toFixed(2)}), please ask your SAP Sales
-        Specialist.
+        {config.ConversionRateCUCC.toFixed(2)}), ask your SAP Sales Specialist.
       </div>
     </>
   );
 
   return (
-    <WizardStep disabled titleText="Additional Configuration">
+    <WizardStep disabled titleText="Additional Services">
       <Title wrappingType="Normal" level="H2" size="H2">
-        4. Additional configuration options
+        4. Add services and set the conversion rate
       </Title>
       <InfoField info={conversionRateInfo} />
       <div className="StepContent">

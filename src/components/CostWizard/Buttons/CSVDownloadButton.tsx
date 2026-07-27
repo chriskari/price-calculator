@@ -55,7 +55,7 @@ export default function CSVDownloadButton() {
         })
       }
     >
-      CSV File
+      Export as CSV
       <Icon id="download-icon" design="Contrast" name="download" />
     </Button>
   );

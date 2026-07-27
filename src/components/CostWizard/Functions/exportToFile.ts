@@ -84,9 +84,9 @@ export default function exportToFile(props: Props) {
     [''],
   );
 
-  // Additional configuration
+  // Additional services
   dataArray.push(
-    ['Additional Configuration'],
+    ['Additional Services'],
     ['Redis Tier', redisSize.tier],
     [
       'Redis Cost',
@@ -105,9 +105,9 @@ export default function exportToFile(props: Props) {
   // Summary
   dataArray.push(
     ['Summary'],
-    ['Node Configuration', `${roundDecimals(nodeConfigCosts, true)} CU`],
+    ['Worker Nodes', `${roundDecimals(nodeConfigCosts, true)} CU`],
     ['Storage', `${roundDecimals(storageCosts, true)} CU`],
-    ['Additional', `${roundDecimals(additionalCosts, true)} CU`],
+    ['Additional Services', `${roundDecimals(additionalCosts, true)} CU`],
     ['Total (CU)', `${roundDecimals(totalCosts.CU, true)} CU`],
     [
       `Total (${config.CurrencyCode})`,
